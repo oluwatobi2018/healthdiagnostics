@@ -12,6 +12,16 @@ const { body, validationResult } = require('express-validator');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}).then(() => console.log("MongoDB Connected"))
+.catch(err => console.error("MongoDB Connection Error:", err));
+
+const authRoutes = require("./routes/authRoutes");
+app.use("/auth", authRoutes);
+
+
 dotenv.config();
 const app = express();
 
