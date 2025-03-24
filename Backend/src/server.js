@@ -1,19 +1,13 @@
-import mongoose from "mongoose";
-import dotenv from "dotenv";
+require('dotenv').config();
+const mongoose = require('mongoose');
 
-dotenv.config();
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log('MongoDB connected'))
+.catch(err => console.error('MongoDB connection error:', err));
 
-const connectDB = async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log("✅ MongoDB Connected");
-  } catch (error) {
-    console.error("❌ MongoDB Connection Error:", error);
-    process.exit(1);
-  }
-};
+const ambulanceRoutes = require('./routes/ambulances');
+app.use('/api/ambulances', ambulanceRoutes);
 
-export default connectDB;

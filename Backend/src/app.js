@@ -7,6 +7,10 @@ import morgan from "morgan";
 // Import Routes
 import authRoutes from "./routes/authRoutes.js";
 import hospitalRoutes from "./routes/hospitalRoutes.js";
+import ambulanceRoutes from "./routes/ambulanceRoutes.js";
+import appointmentRoutes from "./routes/appointmentRoutes.js";
+import specialistsRoutes from "./routes/specialistsRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 // Load environment variables
 dotenv.config();
@@ -31,6 +35,10 @@ mongoose
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/hospitals", hospitalRoutes);
+app.use("/api/ambulance". ambulanceRoutes);
+app.use("/api/appointment". apointmentRoutes);
+app.use("/api/specialists". specialistsRoutes);
+app.use("/api/user". userRoutes);
 
 // Root Route
 app.get("/", (req, res) => {
