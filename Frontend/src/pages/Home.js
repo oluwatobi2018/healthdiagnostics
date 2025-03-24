@@ -9,7 +9,7 @@ const Home = () => {
     <div className="p-6 text-center">
       <h1 className="text-3xl font-bold mb-4">Welcome to the Health Diagnosis App</h1>
       <p className="text-lg text-gray-700 mb-6">
-        Get instant medical symptom analysis and locate nearby hospitals & pharmacies.
+        Get instant medical symptom analysis and locate nearby hospitals, specialists, ambualances & pharmacies.
       </p>
 
       {/* If user is logged in, show dashboard button */}
