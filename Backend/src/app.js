@@ -35,10 +35,10 @@ mongoose
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/hospitals", hospitalRoutes);
-app.use("/api/ambulance". ambulanceRoutes);
-app.use("/api/appointment". apointmentRoutes);
-app.use("/api/specialists". specialistsRoutes);
-app.use("/api/user". userRoutes);
+app.use("/api/ambulance", ambulanceRoutes);
+app.use("/api/appointment", appointmentRoutes);
+app.use("/api/specialists", specialistsRoutes);
+app.use("/api/user", userRoutes);
 
 // Root Route
 app.get("/", (req, res) => {
