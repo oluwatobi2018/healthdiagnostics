@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const PaymentSchema = new mongoose.Schema({
+    name: String,
     email: String,
     amount: Number,
     reference: String,

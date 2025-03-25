@@ -3,9 +3,10 @@ import axios from 'axios';
 const API_BASE_URL = '/api/payments';
 
 const PaymentService = {
-    initiatePayment: async (email, amount) => {
+    initiatePayment: async (name, email, amount) => {
         try {
             const response = await axios.post(`${API_BASE_URL}/pay`, {
+                name,
                 email,
                 amount,
             });
