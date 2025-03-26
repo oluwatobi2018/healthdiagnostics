@@ -1,4 +1,31 @@
-import User from "../models/User.js";
+import User from "/models/User.js";
+
+
+
+export const createUser = async (req,res) =>{
+
+  const {name,email,password,role} = req.body
+
+  const newUserData = {
+    name,
+    email,
+    password,
+    role
+  }
+
+  const newUser = await new User(newUserData)
+try {
+  res.status(200).send({
+    Success : true,
+    user:newUser
+  })
+  
+} catch (error) {
+  res.status(500).send("Server error")
+}
+
+  
+}
 
 // Get user profile (protected route)
 export const getUserProfile = async (req, res) => {

@@ -1,14 +1,22 @@
-
-
 import express from "express"
+import dotenv from "dotenv";
+import {connectDB} from "./src/config/db.js";
+
+dotenv.config();
 
 const app = express()
 
+connectDB()
 
+const PORT  = 5000 || process.env.PORT
+app.use(express.json());
 
-const PORT = 5000 || process.env.PORT
+app.get("/health",async(req, res) =>{
+  res.send("App is working")
+})
+
 
 
 app.listen(PORT, () => console.log(
-  `sERVER IS LISTENING ON PORT ${PORT}`
-))
+  `Server is listening port ${PORT}`) 
+)

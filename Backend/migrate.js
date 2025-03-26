@@ -1,34 +1,35 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import User from "./models/User.js"; // Import models
+import User from "./models/User.js"; // Ensure correct path
 
-dotenv.config();
+dotenv.config(); // Load environment variables from .env file
 
-// Connect to MongoDB
-mongoose
-  .connect(process.env.Mongo_UI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error("MongoDB connection error:", err));
+const mongoURI = process.env.MONGO_URI || "mongodb://localhost:27017/health_diagnostics";
 
-// Sample migration data
-const users = [
-  { name: "John Doe", email: "john@example.com", password: "hashedpassword" },
-  { name: "Jane Doe", email: "jane@example.com", password: "hashedpassword" },
-];
-
-// Run Migration
-const migrateData = async () => {
+// Function to seed users
+const seedUsers = async () => {
   try {
-    await User.insertMany(users); // Insert sample users
-    console.log("Migration completed!");
-    mongoose.connection.close();
+    await mongoose.connect(mongoURI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("✅ Connected to MongoDB");
+
+    // Insert sample data
+    await User.insertMany([
+      { name: "John Doe", email: "john@example.com", age: 30 },
+      { name: "Jane Smith", email: "jane@example.com", age: 28 },
+      { name: "Alice Brown", email: "alice@example.com", age: 35 },
+    ]);
+
+    console.log("✅ Data Migration Successful!");
   } catch (error) {
-    console.error("Migration failed:", error);
+    console.error("❌ Error in Migration:", error);
+  } finally {
     mongoose.connection.close();
+    console.log("🔌 MongoDB connection closed.");
   }
 };
 
-
+// Run migration
+seedUsers();

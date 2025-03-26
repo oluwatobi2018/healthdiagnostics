@@ -1,10 +1,25 @@
-import express from "express";
-import { registerUser, loginUser } from "../controllers/userController.js";
-import { protect } from "../middleware/authMiddleware.js";
-
+const express = require('express');
 const router = express.Router();
+const { createUser, registerUser, loginUser, getUserProfile, updateUserProfile, deleteUserAccount } = require('../controllers/userController');
+const { protect } = require('../middleware/authMiddleware');
 
-router.post("/register", registerUser);
-router.post("/login", loginUser);
+// Register a new user
+router.post('/register', registerUser);
 
-export default router;
+// Login user
+router.post('/login', loginUser);
+
+// Create a new user
+router.post('/create', createUser);
+
+// Get user profile (protected route)
+router.get('/profile', protect, getUserProfile);
+
+// Update user profile (protected route)
+router.put('/profile', protect, updateUserProfile);
+
+// Delete user account (protected route)
+router.delete('/profile', protect, deleteUserAccount);
+
+module.exports = router;
+
