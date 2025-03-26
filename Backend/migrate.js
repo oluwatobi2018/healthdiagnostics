@@ -6,7 +6,6 @@ dotenv.config(); // Load environment variables from .env file
 
 const mongoURI = process.env.MONGO_URI || "mongodb://localhost:27017/health_diagnostics";
 
-// Function to seed users
 const seedUsers = async () => {
   try {
     await mongoose.connect(mongoURI, {
@@ -15,7 +14,6 @@ const seedUsers = async () => {
     });
     console.log("✅ Connected to MongoDB");
 
-    // Insert sample data
     await User.insertMany([
       { name: "John Doe", email: "john@example.com", age: 30 },
       { name: "Jane Smith", email: "jane@example.com", age: 28 },
@@ -31,5 +29,5 @@ const seedUsers = async () => {
   }
 };
 
-// Run migration
 seedUsers();
+
